@@ -200,7 +200,6 @@ export const Cart = ({loginUser}: any) => {
 
   return (
     <Container>
-<<<<<<< HEAD
       <Navbar />
        
 =======

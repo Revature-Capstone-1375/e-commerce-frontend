@@ -59,15 +59,11 @@ export const DisplayProducts = ({loginUser}: any) => {
           
         {loginUser && products.map((item) => (
 
-<<<<<<< HEAD
             <><ProductCard product={item} key={item.id} loginUser={loginUser}
             /> <br></br><br></br>
             {loginUser.role =="ADMIN" &&
             <Button onClick={() => removeButton(item.id, item.image)}>REMOVE<br></br> {item.name}</Button> }
             
-=======
-            <><ProductCard product={item} key={item.id} loginUser={loginUser}/>
->>>>>>> development
     
             {/* <Quantity products={products}/> */}
             </> 
