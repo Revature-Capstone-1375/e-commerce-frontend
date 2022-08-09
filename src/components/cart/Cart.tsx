@@ -200,11 +200,7 @@ export const Cart = ({loginUser}: any) => {
 
   return (
     <Container>
-      <Navbar />
-       
-=======
       <Navbar updateLoginUser={loginUser}/>
->>>>>>> development
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
