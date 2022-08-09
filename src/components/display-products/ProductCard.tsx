@@ -79,6 +79,7 @@ import { apiGetAllProducts } from "../../remote/e-commerce-api/productService";
     justify-content: center;
     margin: 10px;
     transition: all 0.5s ease;
+    background: #72A4C2;
     &:hover {
       background-color: #F26925;
       transform: scale(1.1);

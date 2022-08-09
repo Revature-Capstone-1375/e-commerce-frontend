@@ -9,9 +9,6 @@ import { IconButton } from "@material-ui/core";
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 
 
-
-const theme = createTheme();
-
 export default function CreateProduct({loginUser}: any) {
     // funcitons and state varible to handle changing image
     let [URL, setURL] = useState(null);
@@ -44,8 +41,7 @@ export default function CreateProduct({loginUser}: any) {
       
     return (
         <>
-        <ThemeProvider theme={theme}>
-            <Navbar updateLoginUser={loginUser}/>
+        <Navbar updateLoginUser={loginUser}/>
             <Container component="form" onSubmit={handleCreate} maxWidth="lg">
                 <Box sx={{marginTop: 8,display: 'flex',flexDirection: 'column',alignItems: 'center',}}>
                     <Grid container spacing={2}>
@@ -81,13 +77,12 @@ export default function CreateProduct({loginUser}: any) {
 
                         </Grid>
                         <Grid item xs={12}>
-                            <Button type="submit" variant="contained" sx={{ mt: 3}}>Create</Button>
+                            <Button type="submit" variant="contained" color="primary" sx={{ mt: 3}}>Create</Button>
                         </Grid>
                     </Grid>
                 </Box>
                 
             </Container>
-        </ThemeProvider>
 
         </>
     )
