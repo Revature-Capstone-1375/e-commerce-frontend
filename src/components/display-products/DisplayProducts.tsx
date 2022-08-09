@@ -57,7 +57,7 @@ export const DisplayProducts = ({loginUser}: any) => {
         <Container>
        
           
-        {loginUser && products.map((item) => (
+        {products.map((item) => (
 
             <><ProductCard product={item} key={item.id} loginUser={loginUser}
             /> <br></br><br></br>

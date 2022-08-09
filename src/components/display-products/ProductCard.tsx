@@ -157,10 +157,6 @@ import { apiGetAllProducts } from "../../remote/e-commerce-api/productService";
         <Info>
           <Icon>
             <ShoppingCartOutlined onClick={() => {addItemToCart({...props.product, quantity: counter})}} />
-<<<<<<< HEAD
-            
-=======
->>>>>>> development
           </Icon>
           <Icon>
             <SearchOutlined />
