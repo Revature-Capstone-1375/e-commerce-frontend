@@ -15,12 +15,13 @@ import{
   Box
 } from '@mui/material'
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
   import styled from "styled-components";
 import { CartContext } from "../../context/cart.context";
 import Product from "../../models/Product";
 import { useNavigate } from "react-router-dom";
 import React,{useState} from "react";
+import { apiGetAllProducts } from "../../remote/e-commerce-api/productService";
 
   
   const Info = styled.div`
@@ -99,6 +100,7 @@ import React,{useState} from "react";
   export const ProductCard = (props: productProps) => {
 
     let [counter, setCount] = useState(0);
+    var [products, setProducts] = useState<Product[]>([])
 
     if(counter < 1){
         counter = 1;
@@ -114,7 +116,17 @@ import React,{useState} from "react";
         setCount(counter -1);
     };
 
+    
 
+    useEffect(() => {
+      const fetchData = async () => {
+        const result = await apiGetAllProducts()
+        setProducts(result.payload)
+      }
+      fetchData()
+    }, [])
+
+ 
 
 
 
@@ -145,17 +157,17 @@ import React,{useState} from "react";
         <Info>
           <Icon>
             <ShoppingCartOutlined onClick={() => {addItemToCart({...props.product, quantity: counter})}} />
-
           </Icon>
           <Icon>
             <SearchOutlined />
           </Icon>
           <Icon>
+            
             <KeyboardArrowUpOutlined onClick={incrementCount} />
           </Icon>
           <ProductAmount>{counter}</ProductAmount>
           <Icon>
-            <KeyboardArrowDownOutlined onClick={incrementCount} />
+            <KeyboardArrowDownOutlined onClick={decrementCount} />
           </Icon>
            {/*<div className="app">
             <button className="qb"  onClick={incrementCount}>+</button>
@@ -166,7 +178,7 @@ import React,{useState} from "react";
           {props.loginUser.role == "ADMIN" && <Icon>
 
             <UpgradeOutlined onClick={() => navigate(`/product/${props.product.id}/update`)} />
-          </Icon>}
+          </Icon> }
 
         </Info>
       </Container>

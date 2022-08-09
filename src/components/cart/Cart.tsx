@@ -183,6 +183,7 @@ export const Cart = ({loginUser}: any) => {
           removeButton(id, image);
         }
         setCount(cart[i].quantity - 1)
+       
       }
     }
   }
@@ -205,6 +206,7 @@ export const Cart = ({loginUser}: any) => {
         <Top>
           <TopButton onClick={() => {navigate('/')}}>CONTINUE SHOPPING</TopButton>
           <TopButton onClick={() => {navigate('/checkout')}}>CHECKOUT NOW</TopButton>
+          
         </Top>
         <Bottom>
           <Info>
@@ -217,7 +219,8 @@ export const Cart = ({loginUser}: any) => {
                       <Details>
                         <ProductName>
                           <b>Product:</b> {product.name}
-                        </ProductName>
+                           
+                        </ProductName> 
                         <ProductId>
                           <b>ID:</b> {product.id}
                         </ProductId>

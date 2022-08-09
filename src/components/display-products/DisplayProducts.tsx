@@ -18,12 +18,29 @@ const Container = styled.div`
     justify-content: space-between;
 `;
 
+const TopButton = styled.button`
+  padding: 10px;
+  font-weight: 10;
+  cursor: pointer;
+`;
+
+
+
 export const DisplayProducts = ({loginUser}: any) => {
   
   const navigate = useNavigate()
   var [products, setProducts] = useState<Product[]>([])
 
   console.log(loginUser)
+
+  const removeButton =(id: any, image: any)=>{
+    for (let i =0;i<products.length;i++){
+      if(products[i].id == id){
+           setProducts(products.filter(product => product.image !== image));
+      }
+    }
+  }
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,15 +55,26 @@ export const DisplayProducts = ({loginUser}: any) => {
     <React.Fragment>
         <Navbar updateLoginUser={loginUser}/>
         <Container>
+       
           
-        {loginUser && products.map((item) => (
+        {products.map((item) => (
 
-            <><ProductCard product={item} key={item.id} loginUser={loginUser}/>
+            <><ProductCard product={item} key={item.id} loginUser={loginUser}
+            /> <br></br><br></br>
+            {loginUser.role =="ADMIN" &&
+            <Button onClick={() => removeButton(item.id, item.image)}>REMOVE<br></br> {item.name}</Button> }
+            
     
             {/* <Quantity products={products}/> */}
             </> 
+
+             
             
         ))}
+         {/* {loginUser.role == "ADMIN" && products.map((item) => <><TopButton onClick={() => removeButton(item.id, item.image)} /></>)} */}
+          
+          
+
           {loginUser.role == "ADMIN" && 
         <Box
             sx={{
