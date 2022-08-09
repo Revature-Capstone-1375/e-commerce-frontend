@@ -1,3 +1,7 @@
+import {
+  KeyboardArrowUpOutlined,
+  KeyboardArrowDownOutlined,
+} from '@mui/icons-material';
 import React, {useEffect, useState, useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiGetProductById } from "../remote/e-commerce-api/productService";
@@ -27,13 +31,14 @@ const ProductDetail = ({loginUser}: any) => {
   }
   const button={
     margin: "0px 20px 0px 20px",
+    padding: "5px"
   }
   const desc={
     borderTop: "2px solid black",
     padding: "20px 0px 0px 0px",
     margin: "20px 0px 0px 0px"
   }
-  
+
   
     let [count, setCount]=useState(0);
     if(count<1){
@@ -116,9 +121,9 @@ const ProductDetail = ({loginUser}: any) => {
           <div>
             <span>Qty</span>
             <div className="app">
-            <button className=""  onClick={incrementCount}>+</button>
+            <KeyboardArrowUpOutlined onClick={incrementCount} />
             {count}
-            <button className="" onClick={decrementCount}>-</button>
+            <KeyboardArrowDownOutlined  onClick={decrementCount} />
           </div>
             <button onClick={() => {addItemToCart({...product.payload, quantity: count})}} style={button}>
               Add To Cart
