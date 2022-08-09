@@ -22,6 +22,7 @@ import Product from "../../models/Product";
 import { useNavigate } from "react-router-dom";
 import React,{useState} from "react";
 import { apiGetAllProducts } from "../../remote/e-commerce-api/productService";
+import { SearchProductCard } from "../search/SearchProductCard";
 
   
   const Info = styled.div`
@@ -161,7 +162,7 @@ import { apiGetAllProducts } from "../../remote/e-commerce-api/productService";
             <ShoppingCartOutlined onClick={() => {addItemToCart({...props.product, quantity: counter})}} />
           </Icon>
           <Icon>
-            <SearchOutlined />
+            <SearchOutlined onClick={()=>navigate("/product/" + props.product.id)}/>
           </Icon>
           <Icon>
             
