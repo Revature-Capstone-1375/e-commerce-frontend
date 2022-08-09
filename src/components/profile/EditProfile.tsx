@@ -11,7 +11,7 @@ import eCommerceClient from '../../remote/e-commerce-api/eCommerceClient';
 import { apiLogout } from '../../remote/e-commerce-api/authService';
 import { EditOutlined } from '@material-ui/icons';
 import { useNavigate } from 'react-router-dom';
-
+import Navbar from '../navbar/Narbar';
 
 
 export default function EditProfile({loginUser, updateLoginUser}: any) {
@@ -60,8 +60,9 @@ export default function EditProfile({loginUser, updateLoginUser}: any) {
   };
 
   return (
+    <>
+    <Navbar updateLoginUser={loginUser} />
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
         <Box
           sx={{
             marginTop: 8,
@@ -70,7 +71,7 @@ export default function EditProfile({loginUser, updateLoginUser}: any) {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.dark', color: 'primary.light' }}>
             <EditOutlined />
           </Avatar>
           <Typography component="h1" variant="h5" >
@@ -129,6 +130,7 @@ export default function EditProfile({loginUser, updateLoginUser}: any) {
               type="submit"
               variant="contained"
               sx={{ mt: 3, mb: 2, mr:4, width:90 }}
+              color='primary'
             >
               Edit
             </Button>
@@ -136,6 +138,7 @@ export default function EditProfile({loginUser, updateLoginUser}: any) {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={() => navigate("/")}
+              color='primary'
             >
              Cancel
             </Button>
@@ -150,5 +153,6 @@ export default function EditProfile({loginUser, updateLoginUser}: any) {
           </Box>
         </Box>
       </Container>
+      </>
   );
 }

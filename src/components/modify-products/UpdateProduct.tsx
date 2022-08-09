@@ -1,5 +1,5 @@
 import Navbar from "../navbar/Narbar"
-import { Box, TextField, ThemeProvider, Container, createTheme, Button, Typography, Grid, InputAdornment, TextFieldClasses } from "@mui/material"
+import { Box, TextField, ThemeProvider, Container, createTheme, Typography, Grid, InputAdornment, TextFieldClasses } from "@mui/material"
 import React, { useEffect, useState } from "react";
 import { apiGetProductById } from "../../remote/e-commerce-api/productService";
 import { useParams, useNavigate } from "react-router-dom";
@@ -7,8 +7,8 @@ import { apiUpsertProduct } from "../../remote/e-commerce-api/productService";
 import Product from "../../models/Product";
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import { IconButton } from "@material-ui/core";
+import Button from '@mui/material/Button';
 
-const theme = createTheme();
 
 export default function UpdateProduct({loginUser}: any) {
 
@@ -62,7 +62,7 @@ export default function UpdateProduct({loginUser}: any) {
     return (
         <>
         {product ?
-        <ThemeProvider theme={theme}>
+            <>
             <Navbar updateLoginUser={loginUser} />
             
             <Container component="form" onSubmit={handleUpdate} maxWidth="lg">
@@ -102,13 +102,14 @@ export default function UpdateProduct({loginUser}: any) {
 
                         </Grid>
                         <Grid item xs={12}>
-                            <Button type="submit" variant="contained" sx={{ mt: 3}}>Update</Button>
+                            <Button type="submit" color="secondary" >Update</Button>
                         </Grid>
                     </Grid>
                 </Box>
                 
             </Container>
-        </ThemeProvider>
+        </>
+
         :
         <Typography component="h1" variant="h5">
             Loading Product...

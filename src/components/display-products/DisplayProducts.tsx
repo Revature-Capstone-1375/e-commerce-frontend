@@ -87,7 +87,7 @@ export const DisplayProducts = ({loginUser}: any) => {
             },
             }}
           >
-          <Button onClick={() => navigate('/product/create')} color="success" size="large" variant="outlined" startIcon={<AddCircleIcon />} >
+          <Button onClick={() => navigate('/product/create')} color="primary" size="large" variant="outlined" startIcon={<AddCircleIcon />} >
           Add new product
           </Button>
         </Box>}

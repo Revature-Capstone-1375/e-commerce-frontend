@@ -66,20 +66,22 @@ import { apiGetAllProducts } from "../../remote/e-commerce-api/productService";
   const Image = styled.img`
     height: 75%;
     z-index: 2;
+    background-color:#FFFFF;
   `;
   
   const Icon = styled.div`
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: white;
+    background-color: #474C55;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 10px;
     transition: all 0.5s ease;
+    background: #72A4C2;
     &:hover {
-      background-color: #e9f5f5;
+      background-color: #F26925;
       transform: scale(1.1);
     }
   `;
@@ -153,7 +155,7 @@ import { apiGetAllProducts } from "../../remote/e-commerce-api/productService";
       <><Container>
 
         <Circle />
-        <Image src={props.product.image} />
+        <Image src={props.product.image}/>
         <Info>
           <Icon>
             <ShoppingCartOutlined onClick={() => {addItemToCart({...props.product, quantity: counter})}} />
