@@ -63,7 +63,6 @@ export default function EditProfile({loginUser, updateLoginUser}: any) {
     <>
     <Navbar updateLoginUser={loginUser} />
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
         <Box
           sx={{
             marginTop: 8,

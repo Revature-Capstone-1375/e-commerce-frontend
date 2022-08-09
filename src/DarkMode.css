@@ -1,14 +1,14 @@
 
 /* 1 */
 :root {
-  --font-color: #333;
+  --font-color: #474C55;
   --background-color: #fff;
   --link-color: cornflowerblue;
 }
 
 /* 2 */
 [data-theme="dark"] {
-  --font-color: #eee;
+  --font-color: #FFF;
   --background-color: #333;
   --link-color: peachpuff;
 }
@@ -74,7 +74,7 @@ input:checked + .slider:before {
 }
 
 input:checked + .slider {
-  background-color: cornflowerblue;
+  background-color: rgb(255, 145, 0);
 }
 
 .slider.round {
@@ -83,4 +83,18 @@ input:checked + .slider {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.styled.circle {
+  color: #B9B9BA;
+  background: #474C55;
+}
+
+textarea:focus, input:focus {
+  color:  #72A4C2;
+}
+
+input, select, textarea{
+  color: #B9B9BA;
+  background: #72A4C2;
 }

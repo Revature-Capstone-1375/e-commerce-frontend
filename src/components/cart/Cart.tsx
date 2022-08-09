@@ -11,6 +11,7 @@ import { CartContext } from "../../context/cart.context";
 import Navbar from "../navbar/Narbar";
 import {useState} from "react";
 import React from 'react';
+import Button from '@mui/material/Button';
 
 
 const Container = styled.div``;
@@ -147,13 +148,6 @@ const SummaryItemText = styled.span``;
 
 const SummaryItemPrice = styled.span``;
 
-const Button = styled.button`
-  width: 100%;
-  padding: 10px;
-  background-color: black;
-  color: white;
-  font-weight: 600;
-`;
 
 
 export const Cart = ({loginUser}: any) => {
@@ -204,8 +198,8 @@ export const Cart = ({loginUser}: any) => {
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
-          <TopButton onClick={() => {navigate('/')}}>CONTINUE SHOPPING</TopButton>
-          <TopButton onClick={() => {navigate('/checkout')}}>CHECKOUT NOW</TopButton>
+          <Button color="primary" variant="contained" onClick={() => {navigate('/')}}>CONTINUE SHOPPING</Button>
+          <Button color="primary" variant="contained" onClick={() => {navigate('/checkout')}}>CHECKOUT NOW</Button>
           
         </Top>
         <Bottom>
@@ -275,7 +269,8 @@ export const Cart = ({loginUser}: any) => {
                 {cart.reduce<number>((total, product) => total + product.price * (product.quantity), 0)}
               </SummaryItemPrice>
             </SummaryItem>
-            <Button onClick={() => {navigate('/checkout')}}>CHECKOUT NOW</Button>
+            <br></br>
+            <Button color="primary" variant="contained" onClick={() => {navigate('/checkout')}}>CHECKOUT NOW</Button>
           </Summary>
         </Bottom>
       </Wrapper>
