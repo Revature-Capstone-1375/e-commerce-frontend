@@ -27,8 +27,8 @@ export const AppRoutes: React.FC<unknown> = () => {
 
     <Route path="/product/:id/update" element={<UpdateProduct loginUser={user}/>} />
     <Route path="/product/create" element={<CreateProduct loginUser={user}/>} />
-    <Route path="/product/:id" element={<ProductDetail />} />
-    <Route path="/search" element={<SearchProducts/>}/>
+    <Route path="/product/:id" element={<ProductDetail loginUser={user}/>} />
+    <Route path="/search" element={<SearchProducts loginUser={user}/>}/>
     
   </Routes>
   )

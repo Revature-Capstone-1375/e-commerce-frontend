@@ -8,7 +8,7 @@ import { SearchProductCard }  from "./SearchProductCard";
 import { StringDecoder } from "string_decoder";
 
 
-export const SearchProducts = () =>{
+export const SearchProducts = ({loginUser}: any) =>{
     const location = useLocation();
     const keys = new URLSearchParams(location.search).get('keyword')
 
@@ -25,7 +25,7 @@ export const SearchProducts = () =>{
 
     return(
         <>
-        <Navbar/>
+        <Navbar updateLoginUser={loginUser} />
         <Box sx={{marginTop: 8,display: 'flex',flexDirection: 'column',alignItems: 'center',}}>
             <Typography component="h1" variant="h5">
                 Results for "{keys}"

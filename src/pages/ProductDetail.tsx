@@ -6,7 +6,7 @@ import { CartContext } from "../context/cart.context";
 
 type Props ={};
 
-const ProductDetail = (props: Props) => {
+const ProductDetail = ({loginUser}: any) => {
   let navigate = useNavigate();
 
   const detail = {
@@ -103,7 +103,7 @@ const ProductDetail = (props: Props) => {
 
   return (
     <React.Fragment>
-      <Navbar/>
+      <Navbar updateLoginUser={loginUser} />
       <>
       <div style={detail}>
         <img style={image} src={product.payload.image} />
