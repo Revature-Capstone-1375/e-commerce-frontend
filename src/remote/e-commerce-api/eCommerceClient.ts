@@ -5,10 +5,6 @@ import axios from 'axios';
 const eCommerceClient = axios.create({
   withCredentials: true,
   baseURL: 'http://54.221.133.128:8080',
-  headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'http://54.221.133.128:3000',
-  },
 });
 
 export interface eCommerceApiResponse {
