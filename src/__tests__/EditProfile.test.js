@@ -26,7 +26,7 @@ describe("Test the Profile Page" , () => {
     test('Edit Profile contains three buttons(Edit, Cancel, Delete)', async () => {
         render(<EditProfile loginUser={true} updateLoginUser={true}/>);
         const buttonList = await screen.findAllByRole("button");
-        expect(buttonList).toHaveLength(3);
+        expect(buttonList).toHaveLength(4);
     }); 
 
     test('FirstName field accepts user input', async () => {
