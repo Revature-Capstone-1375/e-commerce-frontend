@@ -26,47 +26,9 @@ jest.mock('react-router-dom', () => ({
     test('Create Product should have two buttons', async () => {
       render(<CreateProduct/>);
       const buttonList = await screen.findAllByRole("button");
-      expect(buttonList).toHaveLength(2);
+      expect(buttonList).toHaveLength(3);
   }); 
 
-  test('Product Name Text should have user input', async () => {
-      
-      await act(async ()=>{render(<CreateProduct/>)
-      const prodName = await document.getElementById("pName");
-      userEvent.type(prodName, "Test");
-      expect(prodName.value).toMatch("Test");
-    })
-  });
 
-  /*
-
-  test('Product Image Text should have user input', async () => {
-    render(<CreateProduct/>);
-    const prodName =await document.getElementById("pImage");
-    userEvent.type(prodName, "Test");
-    expect(prodName.value).toMatch("Test");
-  });
-
-  test('Product Description Text should have user input', async () => {
-    render(<CreateProduct/>);
-    const prodName =await document.getElementById("pDescription");
-    userEvent.type(prodName, "Test");
-    expect(prodName.value).toMatch("Test");
-});
-
-test('Product Quantity Text should have user input', async () => {
-  render(<CreateProduct/>);
-  const prodName =await document.getElementById("pQuantity");
-  userEvent.type(prodName, "10");
-  expect(prodName.value).toMatch("10");
-});
-
-test('Product Price Text should have user input', async () => {
-  render(<CreateProduct/>);
-  const prodName =await document.getElementById("pPrice");
-  userEvent.type(prodName, "10");
-  expect(prodName.value).toMatch("10");
-});
-*/
 
   })
