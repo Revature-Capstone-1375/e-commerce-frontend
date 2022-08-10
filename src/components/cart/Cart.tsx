@@ -1,8 +1,18 @@
+import {
+  CancelPresentationOutlined,
+  KeyboardArrowUpOutlined,
+  KeyboardArrowDownOutlined
+} from '@mui/icons-material';
+
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CartContext } from "../../context/cart.context";
 import Navbar from "../navbar/Narbar";
+import {useState} from "react";
+import React from 'react';
+import Button from '@mui/material/Button';
+
 
 const Container = styled.div``;
 
@@ -57,6 +67,23 @@ const Details = styled.div`
   flex-direction: column;
   justify-content: space-around;
 `;
+
+const Icon = styled.div`
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #474C55;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    transition: all 0.5s ease;
+    background: #72A4C2;
+    &:hover {
+      background-color: #F26925;
+      transform: scale(1.1);
+    }
+  `;
 
 const ProductName = styled.span``;
 
@@ -122,27 +149,59 @@ const SummaryItemText = styled.span``;
 
 const SummaryItemPrice = styled.span``;
 
-const Button = styled.button`
-  width: 100%;
-  padding: 10px;
-  background-color: black;
-  color: white;
-  font-weight: 600;
-`;
 
-export const Cart = () => {
+
+export const Cart = ({loginUser}: any) => {
   const { cart, setCart } = useContext(CartContext);
 
   const navigate = useNavigate();
 
+  let [count, setCount] = useState(0);
+  console.log(loginUser)
+  
+ 
+
+  const editQuantityUp =(id: any)=>{
+    for (let i =0;i<cart.length;i++){
+      if(cart[i].id == id){
+        cart[i].quantity = cart[i].quantity + 1
+        setCount(cart[i].quantity + 1) 
+      }
+    }
+  }
+  const editQuantityDown =(id: any, image: any)=>{
+    for (let i =0;i<cart.length;i++){
+      if(cart[i].id == id){
+        cart[i].quantity = cart[i].quantity - 1
+        if(cart[i].quantity <= 0){
+          cart[i].quantity = 0 
+          removeButton(id, image);
+        }
+        setCount(cart[i].quantity - 1)
+       
+      }
+    }
+  }
+
+  const removeButton =(id: any, image: any)=>{
+    for (let i =0;i<cart.length;i++){
+      if(cart[i].id == id){
+           setCart(cart.filter(product => product.image !== image));
+      }
+    }
+  }
+
+ 
+
   return (
     <Container>
-      <Navbar />
+      <Navbar updateLoginUser={loginUser}/>
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
-          <TopButton onClick={() => {navigate('/')}}>CONTINUE SHOPPING</TopButton>
-          <TopButton onClick={() => {navigate('/checkout')}}>CHECKOUT NOW</TopButton>
+          <Button color="primary" variant="contained" onClick={() => {navigate('/')}}>CONTINUE SHOPPING</Button>
+          <Button color="primary" variant="contained" onClick={() => {navigate('/checkout')}}>CHECKOUT NOW</Button>
+          
         </Top>
         <Bottom>
           <Info>
@@ -155,7 +214,8 @@ export const Cart = () => {
                       <Details>
                         <ProductName>
                           <b>Product:</b> {product.name}
-                        </ProductName>
+                           
+                        </ProductName> 
                         <ProductId>
                           <b>ID:</b> {product.id}
                         </ProductId>
@@ -163,7 +223,22 @@ export const Cart = () => {
                     </ProductDetail>
                     <PriceDetail>
                       <ProductAmountContainer>
+                        <Icon>
+                          <KeyboardArrowUpOutlined onClick={() => editQuantityUp(product.id)} />
+                        </Icon>
                         <ProductAmount> {product.quantity} </ProductAmount>
+                        <Icon>
+                          <KeyboardArrowDownOutlined onClick={() => editQuantityDown(product.id, product.image)} />
+                        </Icon>
+                        <Icon>
+                          <CancelPresentationOutlined onClick={() => removeButton(product.id, product.image)} />
+                        </Icon>
+                        {/*}
+                        <button className="qb" onClick={() => editQuantityUp(product.id)}>^</button>
+                        <ProductAmount> {product.quantity} </ProductAmount>
+                        <button className="qb" onClick={() => editQuantityDown(product.id, product.image)}>v</button>
+                        <button className="qb" onClick={() => removeButton(product.id, product.image)}>-</button>
+                      */}
                       </ProductAmountContainer>
                       <ProductPrice>$ {product.price}</ProductPrice>
                     </PriceDetail>
@@ -178,7 +253,7 @@ export const Cart = () => {
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
               <SummaryItemPrice>$ 
-                  {cart.reduce<number>((total, product) => total + product.price * product.quantity, 0)}
+                  {cart.reduce<number>((total, product) => total + product.price * (product.quantity), 0)}
               </SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
@@ -192,10 +267,11 @@ export const Cart = () => {
             <SummaryItem>
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ 
-                {cart.reduce<number>((total, product) => total + product.price * product.quantity, 0)}
+                {cart.reduce<number>((total, product) => total + product.price * (product.quantity), 0)}
               </SummaryItemPrice>
             </SummaryItem>
-            <Button onClick={() => {navigate('/checkout')}}>CHECKOUT NOW</Button>
+            <br></br>
+            <Button color="primary" variant="contained" onClick={() => {navigate('/checkout')}}>CHECKOUT NOW</Button>
           </Summary>
         </Bottom>
       </Wrapper>
