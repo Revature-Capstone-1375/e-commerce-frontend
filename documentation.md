@@ -277,67 +277,99 @@ INSERT INTO users (id, email, password, first_name, last_name) VALUES (...);
 ## Authcontroller
 Responsiable for autherntication, and where the user sends the login, logout and register.
 ### Arguments
-authService: AuthService - The authentication service that managaes the service layer for authentification
+`authService: AuthService` - The authentication service that managaes the service layer for authentification
 ### Methods
+```Java
 @PostMapping("/login")
-public ResponseEntity<User> login(@RequestBody LoginRequest loginRequest, HttpSession session) - Logs the given user into the API based on the login request given from the responce body
+public ResponseEntity<User> login(@RequestBody LoginRequest loginRequest, HttpSession session)
+```
+- Logs the given user into the API based on the login request given from the responce body
 
+```Java
 @PostMapping("/logout")
-public ResponseEntity<Void> logout(HttpSession session) - loges the user out of the session
+public ResponseEntity<Void> logout(HttpSession session)
+```
+- Logs the user out of the session
 
+```Java
 @PostMapping("/register")
-public ResponseEntity<User> register(@RequestBody RegisterRequest registerRequest) - Regiseters the user for the application
+public ResponseEntity<User> register(@RequestBody RegisterRequest registerRequest)
+```
+- Regiseters the user for the application
 
 ## UserController
 ### Arguments
-userService: UserService - The user service that manages the servic layer for the user
+`userService: UserService` - The user service that manages the servic layer for the user
 ### Methods
+```Java
 @PostMapping
-public User createUser(@RequestBody User user) - Creates a new user
+public User createUser(@RequestBody User user)
+```
+- Creates a new user
 
+```Java
 @DeleteMapping("/{userId}")
-public void deleteUserById(@PathVariable Integer userId) - Deletes a user based on the id given in the path variables
+public void deleteUserById(@PathVariable Integer userId)
+```
+- Deletes a user based on the id given in the path variables
 
+```Java
 PutMapping("/{userId}")
-public User updateUser(@RequestBody User user, @PathVariable Integer userId) - Updates the given user based on the path varaible, with the given user in the request body.
+public User updateUser(@RequestBody User user, @PathVariable Integer userId)
+```
+- Updates the given user based on the path varaible, with the given user in the request body.
 
 ## ProductController
 ### Arguments
-productService: ProductService - The product service that manages the service layer for the user
+`productService: ProductService` - The product service that manages the service layer for the user
 ### Methods
+```Java
 @GetMapping("/{id}")
-public ResponseEntity<Product> getProductById(@PathVariable("id") int id) - Returns the product by the id given, returns null if the product was not found.
+public ResponseEntity<Product> getProductById(@PathVariable("id") int id)
+```
+-Returns the product by the id given, returns null if the product was not found.
 
+```Java
 @GetMapping
-public ResponseEntity<List<Product>> getInventory() - Returns all of the products in inventory.
+public ResponseEntity<List<Product>> getInventory()
+```
+- Returns all of the products in inventory.
 
-
+```Java
 @PutMapping
-public ResponseEntity<Product> upsert(@RequestBody Product product) - Updates the product with the given product if the id is already taken, if the product is not taken then it creates a new product.  Returns the new product.
+`public ResponseEntity<Product> upsert(@RequestBody Product product)
+```
+- Updates the product with the given product if the id is already taken, if the product is not taken then it creates a new product.  Returns the new product.
 
+```Java
 @PatchMapping
-public ResponseEntity<List<Product>> purchase(@RequestBody List<ProductInfo> metadata) - Purchases the products if the user is able to and all of the products are in stock.
+public ResponseEntity<List<Product>> purchase(@RequestBody List<ProductInfo> metadata)
+```
+- Purchases the products if the user is able to and all of the products are in stock.
 
+```Java
 @DeleteMapping("/{id}")
-public ResponseEntity<Product> deleteProduct(@PathVariable("id") int id) - Deletes the product with the given it.  If no product is found, then it returns null.
+public ResponseEntity<Product> deleteProduct(@PathVariable("id") int id)
+```
+- Deletes the product with the given it.  If no product is found, then it returns null.
 
 ## Auth Service
 ### Arguments
-userService: UserService - User service to take and and check if the user is valid.
+`userService: UserService` - User service to take and and check if the user is valid.
 
 ### Methods 
-public Optional<User> findByCredentials(String email, String password) - Finds and returns a user based on teh given email and password, if none is found, then it returns null.
+`public Optional<User> findByCredentials(String email, String password)` - Finds and returns a user based on teh given email and password, if none is found, then it returns null.
 
-public User register(User user) - registers a user with the given user credentials.
+`public User register(User user)` - registers a user with the given user credentials.
 
 ## Product service
 ### Arguments
 productRepository: ProductRepository - The product repository that the service layer is supposed to be referencing for its products data.
 
 ### Methods
-public List<Product> findAll() - Finds all of the products and then returns it.
+`public List<Product> findAll()` - Finds all of the products and then returns it.
 
-public Optional<Product> findById(int id) - Finds a product based on the id given, returns null if the id has not been found.
+`public Optional<Product> findById(int id)` - Finds a product based on the id given, returns null if the id has not been found.
 
 public Product save(Product product) - Saves the given product to the product repository.
 
