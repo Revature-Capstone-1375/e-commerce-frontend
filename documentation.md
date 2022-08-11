@@ -10,16 +10,16 @@ Takes in loginUser object to see if admin or not.
 ### Functions
 
 void editQuantityUp(id : any) - increments quantity.
-```
+```JSX
 <KeyboardArrowUpOutlined onClick={() => editQuantityUp(product.id)} />
 ```
 
 void editQuantityDown(id : any) - decrements quantity. 
-```
+```JSX
  <KeyboardArrowDownOutlined onClick={() => editQuantityDown(product.id, product.image)} />
 ```
 void removeById(id: any, image: any) - removing the product from the card
-```
+```JSX
 <CancelPresentationOutlined onClick={() => removeButton(product.id, product.image)} />
 ```
 
@@ -29,18 +29,19 @@ The Create Product component allows the user to create their own product using U
 userService: UserService -  A user service to update
 ### Usage
 The Create Product component is declared in the Route Paths, and should be declared in the location in which you want a full page HTML page to be visible.
-```
+```JSX
 <Route path="/product/create" element={<CreateProduct loginUser={user}/>} />
 ```
 ### Attributes
 Login User - sends the user to Navbar component, and uses the user in the API call to 
 
 ### Functions
-void changeImage(event: any) - changes the image in the image preview screen
+`void changeImage(event: any)` - changes the image in the image preview screen
 
-void handleChangeURL(url:any) - sets the URL state variable with the target value
+`void handleChangeURL(url:any)` - sets the URL state variable with the target value
 
-void handleCreate(event: React.FormEvent<HTMLFormElement>) - gets the data inputted from the form and passes it to the API
+`void handleCreate(event: React.FormEvent<HTMLFormElement>)` - gets the data inputted from the form and passes it to the API
+
 
 ## Update Product
 The Update Product component allows a user logged in as an Admin to update a product. The admin can update a product’s name, description, price, quantity and image url by clicking on the arrow button visible when hovering over the product that needs to be updated. 
@@ -48,7 +49,7 @@ The Update Product component allows a user logged in as an Admin to update a pro
 
 ### Usage
 The path to access the Update Product can be found in the AppRoutes component.
-```
+```JSX
 <Route path="/product/:id/update" element={<UpdateProduct loginUser={user}/>} />
 ```
 
@@ -56,16 +57,16 @@ The path to access the Update Product can be found in the AppRoutes component.
 Login User = Takes in the product id and returns information about that specific product.
 
 ### Functions
-void changeImage(event: any) - changes the image in the image preview screen
+`void changeImage(event: any)` - changes the image in the image preview screen
 
-void handleChangeURL(url:any) - sets the URL state variable with the target value
+`void handleChangeURL(url:any)` - sets the URL state variable with the target value
 
-void handleCreate(event: React.FormEvent<HTMLFormElement>) - gets the data inputted from the form and passes it to the API
+`void handleCreate(event: React.FormEvent<HTMLFormElement>)` - gets the data inputted from the form and passes it to the API
 
 ## Display Products
 ### Usage
 The Display Products component allows anyone to view the product cards. The admin can remove, view, and add product cards. The display of product cards is the result of an API get request and uses mapping to display the product card with each unique result.
-```
+```JSX
  <Route path="/" element={<DisplayProducts loginUser={user} />} />
 ```
 
@@ -75,7 +76,7 @@ Return
 
 ### Functions
 void removeButton(id:any, image:any) - function to remove a product from the products page. Requires admin role to use.
-```
+```JSX
  {products.map((item) => (<><ProductCard product={item} key={item.id} loginUser={loginUser}}
 ```
 
@@ -86,18 +87,18 @@ Arguments:Takes in props with productProps type.
 Return: Returns our product card container with increment/decrement, navigate, and add to cart button embedded in container.
 
 ### Functions
-boolean addItemToCart(product: Product) - adds item to our cart list and updates it.
-```
+`boolean addItemToCart(product: Product)` - adds item to our cart list and updates it.
+```JSX
 <ShoppingCartOutlined onClick={() => {addItemToCart({...props.product, quantity: counter})}} />
 ```
 
-void incrementCount() - lets us increment how many numbers of items we want.
-```
+`void incrementCount()` - lets us increment how many numbers of items we want.
+```JSX
 <KeyboardArrowUpOutlined onClick={incrementCount} />
 ```
 
-void decrementCount(void) - lets us decrement how many numbers of items we want.
-```
+`void decrementCount(void)` - lets us decrement how many numbers of items we want.
+```JSX
 <KeyboardArrowDownOutlined onClick={decrementCount} />
 ```
 
@@ -105,20 +106,20 @@ void decrementCount(void) - lets us decrement how many numbers of items we want.
 
 ### Usage
 Login component allows users to login and have their information passed through the function to be used on the entire frontend in order to auth for various features.  Everytime a user logs in it is passed to AppRoutes where it is saved in a state variable.
-```
+```JSX
 <Route path="/login" element={<Login updateLoginUser={setUser} />} />
 ```
 
 ### Attributes
 It takes one argument to pass in the logged in user to set the user for the state variable.
-```
+```JSX
 <Login updateLoginUser={setUser} />
 ```
 
 ### Functions
-void handleSubmit(event: React.FormEvent<HTMLFormElement>) - Uses API login with the email and password.
+`void handleSubmit(event: React.FormEvent<HTMLFormElement>)` - Uses API login with the email and password.
 
-void handleData(data: User) - takes in the responce of the request to update login user.
+`void handleData(data: User)` - takes in the responce of the request to update login user.
 
 ## Address Form
 ### Usage
@@ -129,7 +130,7 @@ Takes in props of type addressFormProps.
 
 
 ### Functions
-void handlesubmit(event: React.FormEvent<HTMLFormElement>))  - takes in the input of the form and stores those input into a variable then passes the values of that variable to the updateAddress function. Then calls the handleNext function that will trigger our next case statement.
+`void handlesubmit(event: React.FormEvent<HTMLFormElement>))`  - takes in the input of the form and stores those input into a variable then passes the values of that variable to the updateAddress function. Then calls the handleNext function that will trigger our next case statement.
 
 
 ## Navbar
@@ -138,11 +139,11 @@ The Navbar has two states, user is logged out, and user is logged in. When the u
 
 ### Attributes
 The Navbar takes in a User Object and is passed to each component that displays the Navbar.
-```
+```JSX
 <Navbar updateLoginUser={loginUser}/>
 ```
 ### Functions
-void searchBar() - Returns a search bar component to be displayed to the user.
+`void searchBar()` - Returns a search bar component to be displayed to the user.
 
 ## Edit Profile
 ### Usage
@@ -150,8 +151,8 @@ Edit Profile allows the user to make changes to any part of their profile includ
 After the user clicks edit profile, that registers as a FormEvent the event handler, handleSubmit is invoked.Data.get updates the values in the user object, which is persisted to the api, then logs out of the api.The value variable "navigate" user is the useNavigate() hook, which navigates the user back to the home page.
 
 ### Functions
-void handleDelete() - Makes a DELETE request to the /user/loginUser.id with the user as the payload
-void handleSubmit(event: React.FormEvent<HTMLFormElement>) - Sends a PUT request to the users endpoint/loginUser.id to subtmit the request, and updates the login user with the responce payload. 
+`void handleDelete()` - Makes a DELETE request to the /user/loginUser.id with the user as the payload
+`void handleSubmit(event: React.FormEvent<HTMLFormElement>)` - Sends a PUT request to the users endpoint/loginUser.id to subtmit the request, and updates the login user with the responce payload. 
  
 ## Register
 Allows a new user to create an account by providing the following: First name, Last name, Email and Password. 
@@ -161,12 +162,12 @@ Once the new user provides the required inputs, the user would then click on the
 Functions:
 
 ### Functions
-void handleSubmit(event: React.FormEvent<HTMLFormElement>)) - Takes in the inpjut values from the form then sends a GET request to the API to register a new user.  Then if navigates the user to the login page.
+`void handleSubmit(event: React.FormEvent<HTMLFormElement>))` - Takes in the inpjut values from the form then sends a GET request to the API to register a new user.  Then if navigates the user to the login page.
 
 ## Search Products
 ### Usage
 The path to access the Search Products can be found in the AppRoutes component.
-```
+```JSX
 <Route path="/search" element={<SearchProducts loginUser={user}/>} />
 ```
 The Search Products component allows any user to search for products. The user can search for a product by inputting the desired product name inside the search bar and validating search by clicking on the magnifier icon.  
@@ -180,7 +181,7 @@ The Product Detail component allows the user to view the product detail on its n
 ### Usage
 The path to access the ProductDetail can be found in the AppRoutes component.
 You can also access the page from the product list page by hovering the mouse cursor over the product image and clicking on the magnifying glass icon.
-```
+```JSX
 <Route path="/product/:id" element={<ProductDetail loginUser={user}/>} />
 ```
 
@@ -188,10 +189,10 @@ You can also access the page from the product list page by hovering the mouse cu
 Any: LoginUser -
 
 ### Funcitons
-void incrementsCount() - increments the count of quantity to add to the cart
-void decrementCount() - Decrements the count of the quantity to add to the cart
-void getProduct(id: number) - gets the product using an API call to the backend and sets the product to the current product that it just recieved
-boolean addItemTocart(props: {}) - Adds an item to the cart based on the quantity, returns if the product sucessfully added or not.
+`void incrementsCount()` - increments the count of quantity to add to the cart
+`void decrementCount()` - Decrements the count of the quantity to add to the cart
+`void getProduct(id: number)` - gets the product using an API call to the backend and sets the product to the current product that it just recieved
+`boolean addItemTocart(props: {})` - Adds an item to the cart based on the quantity, returns if the product sucessfully added or not.
 
 
 ## App Routes
@@ -204,26 +205,25 @@ The user can type in a specific URL in the browser and if the URL path matches a
 Provides the end user with the ability to change the webpage from a “light” to “dark” theme to suit their needs. This button is located at the top left of the webpage. To enable “dark mode” the button needs to only be clicked once. From then every page visited thereafter will be updated to reflect the users theme choice.
 
 ### Functions
-void setDarkFunction() - Sets the theme to dark
-void setLight() - sets the theme to light
-void togglesTheme() - Toggles the theme from dark to light, and vice versa
+`void setDarkFunction()` - Sets the theme to dark
+`void setLight()` - sets the theme to light
+`void togglesTheme()` - Toggles the theme from dark to light, and vice versa
 
 # Front-end API Libraries
 ## Auth Service 
 A small library of functions that the user can utilize that allow the user to make API calls that come preconfigured
 ### Usage
 It is used to login and logout of the application.  It is primarily used in the Login component, and in the Navbar for logging out of the API.
-```
+```JSX
 const response = await apiLogin(`${data.get('email')}`, `${data.get('password')}`);
 ```
 
 ### Functions
-{status: any, payload: any} apiLogin(email:string, password: string) - Logs the user into the application at the given URL with the given email and password as arguments. Returns the status response along with the user.
+`{status: any, payload: any} apiLogin(email:string, password: string)` - Logs the user into the application at the given URL with the given email and password as arguments. Returns the status response along with the user.
 
-{status: any, payload: any} apiLogout(promice: Promise<eCommerceApiResponse>
-) - Logs the user out of the application at the given URL, does not require argument.  Returns the status response and the logged out user.
+`{status: any, payload: any} apiLogout(promice: Promise<eCommerceApiResponse>)` - Logs the user out of the application at the given URL, does not require argument.  Returns the status response and the logged out user.
 
-{status: any, payload: any} apiRegister(firstName: string, lastName:string) - Registers a new user for the application using your first name, last name, email, and password as arguments for the function.  Returns the status response along with the newly registered user.
+`{status: any, payload: any} apiRegister(firstName: string, lastName:string)` - Registers a new user for the application using your first name, last name, email, and password as arguments for the function.  Returns the status response along with the newly registered user.
 
 ## E-Commerce Client
 Configures the API to send HTTP requests with Axios.  Implements allowing origin, and hard codes in the backend URL.  It is primarily used in the two API libraries(products services and auth services).
@@ -233,27 +233,29 @@ This is a small library that provides to the user a list of API calls that allow
 
 ### Usage
 Most of these functions are utilized in areas in which products are either benign received by the user or set by the user.
-```
+```JSX
 const result = await apiGetProductById(parseInt(intId))
 ```
 
 ### Functions
-{status: any, payload: any} apiGetAllProducts() - Takes no arguments and returns a list of products in the payload along with a response code.
+`{status: any, payload: any} apiGetAllProducts()` - Takes no arguments and returns a list of products in the payload along with a response code.
 
-{status: any, payload: any} apiGetProductById(id: number) - Argument is an id number for what product the user wants.  Returns a payload containing the product, or undefined if there is no product with that id, and returns a status.
+`{status: any, payload: any} apiGetProductById(id: number)` - Argument is an id number for what product the user wants.  Returns a payload containing the product, or undefined if there is no product with that id, and returns a status.
 
-{status: any, payload: any} apiUpsertProduct(noIdProduct: noIdProduct) - If the user passes a product as an argument which already has a taken id then it updates the product, but if the user passes a product that does not have a set id then it creates a new product with the given product information.  Returns a status code and the updated or created product.
+`{status: any, payload: any} apiUpsertProduct(noIdProduct: noIdProduct)` - If the user passes a product as an argument which already has a taken id then it updates the product, but if the user passes a product that does not have a set id then it creates a new product with the given product information.  Returns a status code and the updated or created product.
 
-{status: any, payload: any} apiPurchase(products: {id: number, quantity: number}[]) - The argument is a list of products that are defined as an id number and a quantity to purchase.  The return is the status code and a list of products that have been purchased.
+`{status: any, payload: any} apiPurchase(products: {id: number, quantity: number}[])` - The argument is a list of products that are defined as an id number and a quantity to purchase.  The return is the status code and a list of products that have been purchased.
 
-{status: any, payload: any} apiDeleteProduct(id: number) - The argument is an id number for what product the user wants to delete.  The return is the status code and what product has been deleted.
+`{status: any, payload: any} apiDeleteProduct(id: number)` - The argument is an id number for what product the user wants to delete.  The return is the status code and what product has been deleted.
  
 # Back-End
 ## EcommerceApplication
 
 ### Usage:
+```Java
 @SpringBootApplication
 public class ECommerceApplication {
+```
 @SpringBootApplication combines @EnableAutoConfiguration and @ComponentScan functionalities into one to create a run-ready application.
 Methods:
 The main method is the entry point.
