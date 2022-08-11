@@ -332,23 +332,39 @@ public User register(User user) - registers a user with the given user credentia
 
 ## Product service
 ### Arguments
-userRepository: UserRepository - The user repository that the service layer is supposed to be referencing for its user data.
+productRepository: ProductRepository - The product repository that the service layer is supposed to be referencing for its products data.
 
 ### Methods
 public List<Product> findAll() - Finds all of the products and then returns it.
 
 public Optional<Product> findById(int id) - Finds a product based on the id given, returns null if the id has not been found.
 
-public Product save(Product product) - Saves a p
+public Product save(Product product) - Saves the given product to the product repository.
 
-public List<Product> saveAll(List<Product> productList, List<ProductInfo> metadata)
+public List<Product> saveAll(List<Product> productList, List<ProductInfo> metadata) - saves a list of products to the product repository
 
-public void delete(int id)
+public void delete(int id) - Deletes a product from the product repostiroy based on the id passed to it.
 
 ## User Service
+### Arguments
+userRepository: UserRepository - The given user repository is the repositry that keeps track of object persistancy.
 
-## Repositories
+### Methods
+public Optional<User> findByCredentials(String email, String password) - Finds a user based on if the username and the password match the entry in the database.
 
-## Models
+public User save(User user) - Saves a new user in the database or updates an existing one and returns the entry.
 
+public User createUser(User user) - Saves a new user in the database or updates an existing one and returns the entry.
 
+public void deleteUserById(Integer userId) - Deletes a user with the given user id, or throws an exception if the user cannot be found.
+
+public User updateUser(User user, Integer userId) - Updates the user with the given user id with the new user that was also given.  Returns the updated user or throws an exception if the user cannot be found.
+
+## Product Repositoy
+Extends the JPARepository.  Keeps track of the persistant databases and allows managing of the products table.
+
+## User Repository
+Extends the JPARepository.  Keeps track of the persistant databases and allows managing of the users table.
+
+### Methods
+Optional<User> findByEmailAndPassword(String email, String password) - Utilizes the Spring JPA to signify that the JPA should find a user in the users table that has a matching email and password.
